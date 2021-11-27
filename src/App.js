@@ -2,10 +2,12 @@ import "./App.css";
 import HomePage from "./pages/homepage/homepage.jsx";
 import { Routes, Route } from "react-router-dom";
 import ShopPage from "./pages/shop/shop";
+import Header from "./componets/header/header";
 
 function App() {
   return (
     <div>
+      <Header />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
