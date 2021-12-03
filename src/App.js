@@ -1,6 +1,6 @@
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.jsx";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ShopPage from "./pages/shop/shop";
 import Header from "./componets/header/header";
 import SinSout from "./pages/Sin-Sout/sin-sout";
@@ -41,15 +41,24 @@ class App extends React.Component {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/signin" element={<SinSout />} />
+          <Route
+            path="/signin"
+            element={
+              this.props.currentUser ? <Navigate replace to="/" /> : <SinSout />
+            }
+          />
         </Routes>
       </div>
     );
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
