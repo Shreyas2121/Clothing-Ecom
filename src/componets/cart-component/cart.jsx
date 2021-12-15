@@ -16,7 +16,7 @@ const CartDrop = ({ cartItems, dispatch }) => {
 
   return (
     <div className="cart-dropdown">
-      <div className="cart-item">
+      <div className="cart-items">
         {cartItems.length ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} item={cartItem} />
